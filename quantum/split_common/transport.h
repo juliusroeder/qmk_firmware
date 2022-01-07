@@ -76,6 +76,13 @@ typedef struct _split_slave_encoder_sync_t {
 } split_slave_encoder_sync_t;
 #endif  // ENCODER_ENABLE
 
+#ifdef DIP_SWITCH_ENABLE
+typedef struct _split_slave_dip_switch_sync_t {
+    uint8_t checksum;
+    bool state[NUMBER_OF_DIP_SWITCHES];
+} split_slave_dip_switch_sync_t;
+#endif  // DIP_SWITCH_ENABLE
+
 #if !defined(NO_ACTION_LAYER) && defined(SPLIT_LAYER_STATE_ENABLE)
 typedef struct _split_layers_sync_t {
     layer_state_t layer_state;
