@@ -45,6 +45,11 @@ bool transport_execute_transaction(int8_t id, const void *initiator2target_buf, 
 #    define NUMBER_OF_ENCODERS (sizeof((pin_t[])ENCODERS_PAD_A) / sizeof(pin_t))
 #endif  // ENCODER_ENABLE
 
+#ifdef DIP_SWITCH_ENABLE
+#    include "dip_switch.h"
+#    define NUMBER_OF_DIP_SWITCHES (sizeof((pin_t[])DIP_SWITCH_PINS) / sizeof(pin_t))
+#endif // DIP_SWITCH_ENABLE
+
 #ifdef BACKLIGHT_ENABLE
 #    include "backlight.h"
 #endif  // BACKLIGHT_ENABLE
@@ -137,6 +142,10 @@ typedef struct _split_shared_memory_t {
 #ifdef ENCODER_ENABLE
     split_slave_encoder_sync_t encoders;
 #endif  // ENCODER_ENABLE
+
+#ifdef DIP_SWITCH_ENABLE
+    split_slave_dip_switch_sync_t dip_switches;
+#endif  // DIP_SWITCH_ENABLE
 
 #ifndef DISABLE_SYNC_TIMER
     uint32_t sync_timer;
